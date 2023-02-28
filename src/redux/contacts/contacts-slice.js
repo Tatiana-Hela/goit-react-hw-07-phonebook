@@ -18,40 +18,40 @@ const contactsSlice = createSlice({
   name: 'contacts',
   initialState: { items: [], isLoading: false, error: null },
   reducers: {
-    [fetchAllContactsLoading]: store => {
-      store.isLoading = true;
+    [fetchAllContactsLoading]: state => {
+      state.isLoading = true;
     },
-    [fetchAllContactsSuccess]: (store, { payload }) => {
-      store.isLoading = false;
-      store.items = payload;
+    [fetchAllContactsSuccess]: (state, { payload }) => {
+      state.isLoading = false;
+      state.items = payload;
     },
-    [fetchAllContactsError]: (store, { payload }) => {
-      store.isLoading = false;
-      store.error = payload;
+    [fetchAllContactsError]: (state, { payload }) => {
+      state.isLoading = false;
+      state.error = payload;
     },
 
-    [fetchAddContactLoading]: store => {
-      store.isLoading = true;
+    [fetchAddContactLoading]: state => {
+      state.isLoading = true;
     },
-    [fetchAddContactSuccess]: (store, { payload }) => {
-      store.isLoading = false;
-      store.items.push(payload);
+    [fetchAddContactSuccess]: (state, { payload }) => {
+      state.isLoading = false;
+      state.items.push(payload);
     },
-    [fetchAddContactError]: (store, { payload }) => {
-      store.isLoading = false;
-      store.error = payload;
+    [fetchAddContactError]: (state, { payload }) => {
+      state.isLoading = false;
+      state.error = payload;
     },
-    [fetchDeleteContactLoading]: store => {
-      store.isLoading = true;
+    [fetchDeleteContactLoading]: state => {
+      state.isLoading = true;
     },
-    [fetchDeleteContactSuccess]: (store, { payload }) => {
-      store.isLoading = false;
-      const index = store.items.findIndex(item => item.id === payload);
-      store.items.splice(index, 1);
+    [fetchDeleteContactSuccess]: (state, { payload }) => {
+      state.isLoading = false;
+      const index = state.items.findIndex(item => item.id === payload);
+      state.items.splice(index, 1);
     },
-    [fetchDeleteContactError]: (store, { payload }) => {
-      store.isLoading = false;
-      store.error = payload;
+    [fetchDeleteContactError]: (state, { payload }) => {
+      state.isLoading = false;
+      state.error = payload;
     },
   },
 });

@@ -1,11 +1,11 @@
 import { useSelector, useDispatch } from 'react-redux';
 import { setFilter } from 'redux/filter/filter-slice';
-import { getFilter } from 'redux/filter/filter-selector';
+import { selectFilter } from 'redux/filter/filter-selector';
 
 import css from '../Filter/Filter.module.css';
 
 const Filter = () => {
-  const filter = useSelector(getFilter);
+  const filter = useSelector(selectFilter);
   const dispatch = useDispatch();
   return (
     <label className={css.label}>

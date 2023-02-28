@@ -1,3 +1,4 @@
+// import { Notify } from 'notiflix';
 import { useState } from 'react';
 import { useDispatch } from 'react-redux';
 // import { getContacts } from 'redux/contacts/contacts-selector';
@@ -29,7 +30,18 @@ const ContactForm = () => {
 
   const handleSubmit = e => {
     e.preventDefault();
-    dispatch(fetchAddContact(name, phone));
+    // const isNameAdded = contacts.some(
+    //   contact => contact.name.toLowerCase() === name.toLowerCase()
+    // );
+    // const isNumberAdded = contacts.some(contact => contact.phone === phone);
+    // if (isNameAdded) {
+    //   Notify.failure(`${name} is alredy in contacts`);
+    //   return;
+    // } else if (isNumberAdded) {
+    //   Notify.failure(`${phone} is alredy in contacts`);
+    //   return;
+    // }
+    dispatch(fetchAddContact({name,phone}));
     setName('');
     setPhone('');
   };
