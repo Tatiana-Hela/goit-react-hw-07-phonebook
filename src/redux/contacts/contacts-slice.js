@@ -17,7 +17,7 @@ import {
 const contactsSlice = createSlice({
   name: 'contacts',
   initialState: { items: [], isLoading: false, error: null },
-  reducers: {
+  extraReducers: {
     [fetchAllContactsLoading]: state => {
       state.isLoading = true;
     },
