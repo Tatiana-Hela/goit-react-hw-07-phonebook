@@ -1,15 +1,13 @@
-// import { Notify } from 'notiflix';
 import { useState } from 'react';
-import { useDispatch } from 'react-redux';
-// import { getContacts } from 'redux/contacts/contacts-selector';
-import { fetchAddContact } from 'redux/contacts/contacts-operations';
+import { useDispatch} from 'react-redux';
+import { addContact } from 'redux/contacts/contacts-operations';
 
 import css from '../ContactForm/ContactForm.module.css';
 
 const ContactForm = () => {
   const [name, setName] = useState('');
   const [phone, setPhone] = useState('');
-  // const contacts = useSelector(getContacts);
+  
   const dispatch = useDispatch();
 
   const handleChange = e => {
@@ -30,18 +28,7 @@ const ContactForm = () => {
 
   const handleSubmit = e => {
     e.preventDefault();
-    // const isNameAdded = contacts.some(
-    //   contact => contact.name.toLowerCase() === name.toLowerCase()
-    // );
-    // const isNumberAdded = contacts.some(contact => contact.phone === phone);
-    // if (isNameAdded) {
-    //   Notify.failure(`${name} is alredy in contacts`);
-    //   return;
-    // } else if (isNumberAdded) {
-    //   Notify.failure(`${phone} is alredy in contacts`);
-    //   return;
-    // }
-    dispatch(fetchAddContact({name,phone}));
+    dispatch(addContact({name,phone}));
     setName('');
     setPhone('');
   };

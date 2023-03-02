@@ -9,7 +9,7 @@ import ContactItem from 'components/ContactItem/ContactItem';
 
 const ContactList = () => {
   const contacts = useSelector(selectVisibleContacts);
-console.log(contacts)
+
   return (
     <>
       {contacts.length === 0 && (

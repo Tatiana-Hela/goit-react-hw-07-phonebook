@@ -1,58 +1,50 @@
 import { createSlice } from '@reduxjs/toolkit';
-// import { nanoid } from 'nanoid';
-// import { store } from 'redux/store';
 
 import {
-  fetchAllContactsLoading,
-  fetchAllContactsSuccess,
-  fetchAllContactsError,
-  fetchAddContactLoading,
-  fetchAddContactSuccess,
-  fetchAddContactError,
-  fetchDeleteContactLoading,
-  fetchDeleteContactSuccess,
-  fetchDeleteContactError,
-} from './contacts-actions';
+  fetchContacts,
+  addContact,
+  deleteContact,
+} from './contacts-operations';
 
 const contactsSlice = createSlice({
   name: 'contacts',
   initialState: { items: [], isLoading: false, error: null },
-  extraReducers: {
-    [fetchAllContactsLoading]: state => {
-      state.isLoading = true;
-    },
-    [fetchAllContactsSuccess]: (state, { payload }) => {
-      state.isLoading = false;
-      state.items = payload;
-    },
-    [fetchAllContactsError]: (state, { payload }) => {
-      state.isLoading = false;
-      state.error = payload;
-    },
-
-    [fetchAddContactLoading]: state => {
-      state.isLoading = true;
-    },
-    [fetchAddContactSuccess]: (state, { payload }) => {
-      state.isLoading = false;
-      state.items.push(payload);
-    },
-    [fetchAddContactError]: (state, { payload }) => {
-      state.isLoading = false;
-      state.error = payload;
-    },
-    [fetchDeleteContactLoading]: state => {
-      state.isLoading = true;
-    },
-    [fetchDeleteContactSuccess]: (state, { payload }) => {
-      state.isLoading = false;
-      const index = state.items.findIndex(item => item.id === payload);
-      state.items.splice(index, 1);
-    },
-    [fetchDeleteContactError]: (state, { payload }) => {
-      state.isLoading = false;
-      state.error = payload;
-    },
+  extraReducers: builder => {
+    builder
+      .addCase(fetchContacts.pending, store => {
+        store.isLoading = true;
+      })
+      .addCase(fetchContacts.fulfilled, (store, { payload }) => {
+        store.isLoading = false;
+        store.items = payload;
+      })
+      .addCase(fetchContacts.rejected, (store, { payload }) => {
+        store.isLoading = false;
+        store.error = payload;
+      })
+      .addCase(addContact.pending, store => {
+        store.isLoading = true;
+      })
+      .addCase(addContact.fulfilled, (store, { payload }) => {
+        store.isLoading = false;
+        store.items.push(payload);
+      })
+      .addCase(addContact.rejected, (store, { payload }) => {
+        store.isLoading = false;
+        store.error = payload;
+      })
+      .addCase(deleteContact.pending, store => {
+        store.isLoading = true;
+      })
+      .addCase(deleteContact.fulfilled, (store, { payload }) => {
+        store.isLoading = false;
+        const index = store.items.findIndex(item => item.id === payload);
+        store.items.splice(index, 1);
+      })
+      .addCase(deleteContact.rejected, (store, { payload }) => {
+        store.isLoading = false;
+        store.error = payload;
+      });
   },
 });
 

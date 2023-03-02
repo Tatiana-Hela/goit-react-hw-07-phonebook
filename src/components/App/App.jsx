@@ -18,7 +18,7 @@ const App = () => {
     dispatch(fetchContacts())
   },[dispatch])
 
-  console.log(contacts);
+  // console.log(contacts);
   const isContacts = Boolean(contacts.length);
   return (
     <div className={css.container}>
